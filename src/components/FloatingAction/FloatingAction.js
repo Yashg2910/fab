@@ -10,7 +10,7 @@ import FlatIcon from "../../assets/icons/flag.png";
 
 import FabMenuItem from "../FabMenuItem/FabMenuItem";
 
-function showOption(allowedOptions, optionType) {
+function shouldShowOption(allowedOptions, optionType) {
   return allowedOptions.includes(optionType);
 }
 
@@ -24,18 +24,18 @@ function FloatingAction({
       {isMenuOpen && (
         <>
           {/* Menu Items */}
-          {showOption(optionsToShow, "issue") && (
+          {shouldShowOption(optionsToShow, "issue") && (
             <FabMenuItem title={"Report an Issue"} iconUrl={FeedbackIcon} />
           )}
-          {showOption(optionsToShow, "feedback") && (
+          {shouldShowOption(optionsToShow, "feedback") && (
             <FabMenuItem title={"Share Feedback"} iconUrl={WriteIcon} />
           )}
 
-          {showOption(optionsToShow, "sugestions") && (
+          {shouldShowOption(optionsToShow, "sugestions") && (
             <FabMenuItem title={"Give Suggestion"} iconUrl={LikesIcon} />
           )}
 
-          {showOption(optionsToShow, "contactUs") && (
+          {shouldShowOption(optionsToShow, "contactUs") && (
             <FabMenuItem title={"Contact Us"} iconUrl={FlatIcon} />
           )}
         </>
