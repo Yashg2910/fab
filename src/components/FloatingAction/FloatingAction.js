@@ -40,14 +40,19 @@ const fabMenuItems = [
 function FloatingAction({
   optionsToShow = ["contactUs", "suggestions", "feedback", "issue"],
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [selectedOption, setSelectedOption] = useState("contactUs");
 
   const filteredOptions = fabMenuItems.filter((option) =>
     shouldShowOption(optionsToShow, option.key)
   );
 
   return (
-    <div className="floating-action-container">
+    <div
+      className={`floating-action-container ${
+        selectedOption && "floating-action-container-row"
+      }`}
+    >
       {isMenuOpen && (
         <>
           {filteredOptions.map(({ key, title, iconUrl }, idx) => (
@@ -55,14 +60,24 @@ function FloatingAction({
               key={key}
               title={title}
               iconUrl={iconUrl}
-              onPress={() => {}}
+              onPress={() => {
+                setSelectedOption(key);
+              }}
+              showLabel={!selectedOption}
+              isSelected={key === selectedOption}
             />
           ))}
         </>
       )}
 
       <FabButton
-        onIconPress={() => setIsMenuOpen((prev) => !prev)}
+        onIconPress={() => {
+          const currentState = isMenuOpen;
+          setIsMenuOpen(!currentState);
+          if (currentState) {
+            setSelectedOption(null);
+          }
+        }}
         iconUrl={!isMenuOpen ? DocumentIcon : CloseIcon}
       />
     </div>
