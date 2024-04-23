@@ -1,4 +1,5 @@
 import "./App.scss";
+import FloatingAction from "./components/FloatingAction/FloatingAction";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div className="navbar">
         <span>THE PRODUCT PLATFORM</span>
       </div>
+      <FloatingAction />
     </div>
   );
 }

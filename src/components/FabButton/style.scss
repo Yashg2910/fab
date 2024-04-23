@@ -1,0 +1,12 @@
+@import "../../theme/theme.scss";
+
+.fab-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: $mainWhite;
+  cursor: pointer;
+}
