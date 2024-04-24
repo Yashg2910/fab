@@ -7,6 +7,13 @@
   align-items: end;
 }
 
-.floating-action-container-row {
+.floating-action-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.floating-action-menu-row {
+  display: flex;
   flex-direction: row;
 }

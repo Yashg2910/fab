@@ -9,6 +9,7 @@ import LikesIcon from "../../assets/icons/likes.png";
 import FlagIcon from "../../assets/icons/flag.png";
 
 import FabMenuItem from "../FabMenuItem/FabMenuItem";
+import FabCard from "../FabCard/FabCard";
 
 function shouldShowOption(allowedOptions, optionType) {
   return allowedOptions.includes(optionType);
@@ -40,46 +41,49 @@ const fabMenuItems = [
 function FloatingAction({
   optionsToShow = ["contactUs", "suggestions", "feedback", "issue"],
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState();
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [selectedOption, setSelectedOption] = useState("contactUs");
 
   const filteredOptions = fabMenuItems.filter((option) =>
     shouldShowOption(optionsToShow, option.key)
   );
 
   return (
-    <div
-      className={`floating-action-container ${
-        selectedOption && "floating-action-container-row"
-      }`}
-    >
-      {isMenuOpen && (
-        <>
-          {filteredOptions.map(({ key, title, iconUrl }, idx) => (
-            <FabMenuItem
-              key={key}
-              title={title}
-              iconUrl={iconUrl}
-              onPress={() => {
-                setSelectedOption(key);
-              }}
-              showLabel={!selectedOption}
-              isSelected={key === selectedOption}
-            />
-          ))}
-        </>
-      )}
+    <div className={`floating-action-container`}>
+      {isMenuOpen && <FabCard />}
+      <div
+        className={`floating-action-menu ${
+          selectedOption && "floating-action-menu-row"
+        }`}
+      >
+        {isMenuOpen && (
+          <>
+            {filteredOptions.map(({ key, title, iconUrl }, idx) => (
+              <FabMenuItem
+                key={key}
+                title={title}
+                iconUrl={iconUrl}
+                onPress={() => {
+                  setSelectedOption(key);
+                }}
+                showLabel={!selectedOption}
+                isSelected={key === selectedOption}
+              />
+            ))}
+          </>
+        )}
 
-      <FabButton
-        onIconPress={() => {
-          const currentState = isMenuOpen;
-          setIsMenuOpen(!currentState);
-          if (currentState) {
-            setSelectedOption(null);
-          }
-        }}
-        iconUrl={!isMenuOpen ? DocumentIcon : CloseIcon}
-      />
+        <FabButton
+          onIconPress={() => {
+            const currentState = isMenuOpen;
+            setIsMenuOpen(!currentState);
+            if (currentState) {
+              setSelectedOption(null);
+            }
+          }}
+          iconUrl={!isMenuOpen ? DocumentIcon : CloseIcon}
+        />
+      </div>
     </div>
   );
 }
