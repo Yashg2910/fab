@@ -40,7 +40,7 @@ const fabMenuItems = [
 function FloatingAction({
   optionsToShow = ["contactUs", "suggestions", "feedback", "issue"],
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("contactUs");
 
   const filteredOptions = fabMenuItems.filter((option) =>
