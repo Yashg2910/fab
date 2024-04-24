@@ -41,7 +41,7 @@ function FloatingAction({
   optionsToShow = ["contactUs", "suggestions", "feedback", "issue"],
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("contactUs");
+  const [selectedOption, setSelectedOption] = useState();
 
   const filteredOptions = fabMenuItems.filter((option) =>
     shouldShowOption(optionsToShow, option.key)
